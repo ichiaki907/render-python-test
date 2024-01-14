@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>API呼び出しテスト</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>API呼び出しテスト</h1>
+    <!-- ボタンを追加 -->
+    <button onclick="fetchAPI()">APIを呼び出す</button>
+    <!-- 結果を表示するための段落 -->
+    <p id="apiResult"></p>
+  </div>
+
+  <script>
+    // APIをフェッチする関数
+    function fetchAPI() {
+      // REST APIのURL（例としてJSONPlaceholderを使用）
+      const apiUrl = 'http://127.0.0.1:8000/';
+
+      // Fetch APIを使用してリクエストを送信
+      fetch(apiUrl)
+        .then(response => response.json()) // レスポンスをJSONに変換
+        .then(data => {
+          // 結果を画面に表示
+          document.getElementById('apiResult').innerText = JSON.stringify(data, null, 2);
+        })
+        .catch(error => {
+          // エラーが発生した場合はエラーメッセージを表示
+          document.getElementById('apiResult').innerText = 'エラーが発生しました: ' + error;
+        });
+    }
+  </script>
+</body>
+
+</html>
